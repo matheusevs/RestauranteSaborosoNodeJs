@@ -1,6 +1,6 @@
-# RestauranteSaboroso
+# RestauranteSaboroso - PROJETO EM ANDAMENTO
 
-sudo npm install express-generator -g
+<!-- sudo npm install express-generator -g
 sudo npm install -g bower
 cd public/admin/
 bower install
@@ -12,4 +12,4 @@ para criação do banco de dados, basta utilizar a migration que está no caminh
 
 -- necessario ter 
 nodejs
-mysql
+mysql -->
