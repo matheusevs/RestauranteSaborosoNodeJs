@@ -12,7 +12,7 @@ router.use(function(req, res, next){
 
     } else {
 
-        req.menus = admin.getMenus();
+        req.menus = admin.getMenus(req);
         next();
 
     }
