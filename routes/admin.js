@@ -19,19 +19,6 @@ router.use(function(req, res, next){
 
 });
 
-router.get('/logout', function(req, res, next){
-
-    delete req.session.user;
-    res.redirect('/admin/login');
-
-});
-
-router.get('/', function(req, res, next){
-
-    res.render('admin/index', admin.getParams(req));
-
-});
-
 router.post('/login', function(req, res, next){
 
     let data = req.body;
@@ -67,6 +54,29 @@ router.get('/login', function(req, res, next){
 
     users.render(req, res, null);
 
+});
+
+router.get('/logout', function(req, res, next){
+
+    delete req.session.user;
+    res.redirect('/admin/login');
+
+});
+
+router.get('/', function(req, res, next){
+
+    admin.dashboard().then(data => {
+
+        res.render('admin/index', admin.getParams(req, {
+            data            
+        }));
+
+    }).catch(error => {
+
+        console.error(error);
+
+    });
+    
 });
 
 router.get('/contacts', function(req, res, next){
