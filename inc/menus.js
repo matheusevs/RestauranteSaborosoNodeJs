@@ -1,4 +1,5 @@
 let conn = require('./db');
+let path = require('path');
 
 module.exports = {
 
@@ -19,6 +20,40 @@ module.exports = {
             });
             
         });
+
+    },
+
+    save(fields, files){
+
+        return new Promise((resolve, reject) => {
+
+            fields.photo = `images/${path.parse(files.photo.path).base}`;
+
+            conn.query(`
+            
+                INSERT INTO tb_menus (title, description, price, photo)
+                VALUES(?, ?, ?, ?)
+            
+            `, [
+                fields.title,
+                fields.description,
+                fields.price,
+                fields.photo
+            ], (error, results) => {
+
+                if(error){
+
+                    reject(error);
+
+                } else {
+
+                    resolve(results);
+
+                }
+
+            });
+
+        })
 
     }
 
