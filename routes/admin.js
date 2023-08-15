@@ -1,4 +1,5 @@
 var express = require('express');
+var users = require('./../inc/users');
 var router = express.Router();
 
 router.get('/', function(req, res, next){
@@ -9,17 +10,40 @@ router.get('/', function(req, res, next){
 
 });
 
-router.get('/login', function(req, res, next){
+router.post('/login', function(req, res, next){
 
-    if(!req.sessionStore.views){
-        req.sessionStore.views = 0;
+    let data = req.body;
+
+    if(!data.email){
+
+        users.render(req, res, "Informe o email");
+
+    } else if(!data.password){
+
+        users.render(req, res, "Informe a senha");
+
+    } else {
+
+        users.login(data.email, data.password).then(user => {
+
+            req.session.user = user;
+            res.redirect('/admin');
+            
+        }).catch(error => {
+
+            console.log(error)
+
+            users.render(req, res, error.message || error);
+
+        });
+
     }
 
-    console.log(req.sessionStore.views++)
+});
 
-    res.render('admin/login', {
+router.get('/login', function(req, res, next){
 
-    });
+    users.render(req, res, null);
 
 });
 
