@@ -11,6 +11,12 @@ router.get('/', function(req, res, next){
 
 router.get('/login', function(req, res, next){
 
+    if(!req.sessionStore.views){
+        req.sessionStore.views = 0;
+    }
+
+    console.log(req.sessionStore.views++)
+
     res.render('admin/login', {
 
     });
