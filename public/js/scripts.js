@@ -27,41 +27,72 @@ formUpdate.save().then(json => {
 
 [...document.querySelectorAll('.btn-update')].forEach(btn => {
 
-btn.addEventListener('click', e => {
+    btn.addEventListener('click', e => {
 
-    let tr = e.path.find(el => {
+        let tr = e.path.find(el => {
 
-        return (el.tagName.toUpperCase() === 'TR');
+            return (el.tagName.toUpperCase() === 'TR');
 
-    });
+        });
 
-    let data = JSON.parse(tr.dataset.row);
+        let data = JSON.parse(tr.dataset.row);
 
-    for(let name in data){
+        for(let name in data){
 
-        switch(name){
+            switch(name){
 
-            case 'photo':
+                case 'photo':
 
-                formUpdate.querySelector('img').src = '/' + data[name];
-            
-            break;
+                    formUpdate.querySelector('img').src = '/' + data[name];
+                
+                break;
 
-            default:
-            let input = formUpdate.querySelector(`[name=${name}]`);
-            
-            if(input){
+                default:
+                let input = formUpdate.querySelector(`[name=${name}]`);
+                
+                if(input){
 
-                input.value = data[name];
-            
-            } 
+                    input.value = data[name];
+                
+                } 
+
+            }
 
         }
 
-    }
+        $('#modal-update').modal('show');
 
-    $('#modal-update').modal('show');
+    });
 
 });
+
+
+[...document.querySelectorAll('.btn-delete')].forEach(btn => {
+
+    btn.addEventListener('click', e => {
+
+        let tr = e.path.find(el => {
+
+            return (el.tagName.toUpperCase() === 'TR');
+
+        });
+
+        let data = JSON.parse(tr.dataset.row);
+
+        if(confirm(`Deseja realmente excluir o menu ${data.title}?`)){
+
+            fetch(`/admin/menus/${data.id}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(json => {
+    
+                window.location.reload();
+    
+            });
+        
+        }
+
+    });
 
 });

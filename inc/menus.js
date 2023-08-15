@@ -88,6 +88,44 @@ module.exports = {
 
         });
 
+    },
+
+    delete(id){
+
+        console.log(id);
+
+
+        return new Promise((resolve, reject) => {
+
+            // conn.query(`
+            
+            //     DELETE FROM tb_menus WHERE id = ?
+
+            // `, [
+            //     id
+            // ], (error, results));
+
+            conn.query(`
+
+                DELETE FROM tb_menus WHERE id = ?
+
+            `, [id], (error, results) => {
+
+
+                if(error){
+
+                    reject(error);
+
+                } else {
+
+                    resolve(results);
+
+                }
+
+            });
+
+        });
+
     }
 
 }
