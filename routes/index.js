@@ -1,4 +1,3 @@
-var conn = require('./../inc/db');
 var menus = require('./../inc/menus');
 var reservations = require('./../inc/reservations');
 var contacts = require('./../inc/contacts');
