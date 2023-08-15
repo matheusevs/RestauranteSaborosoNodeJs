@@ -3,26 +3,27 @@ new PluginFileReader('#modal-update [type=file]', '#modal-update img');
 
 let formCreate = document.querySelector('#modal-create form');
 
-formCreate.addEventListener('submit', e => {
-
-e.preventDefault();
-
-let formCreateData = new FormData(formCreate);
-
-fetch('/admin/menus', {
-    method: 'POST',
-    body: formCreateData
-})
-    .then(response => response.json())
-    .then(json => {
+formCreate.save().then(json => {
 
     window.location.reload();
-    
-    });
+
+}).catch(error => {
+
+    console.error(error);
 
 });
 
-let formUpdate = document.querySelector('#modal-update');
+let formUpdate = document.querySelector('#modal-update form');
+
+formUpdate.save().then(json => {
+
+    window.location.reload();
+
+}).catch(error => {
+
+    console.error(error);
+
+});
 
 [...document.querySelectorAll('.btn-update')].forEach(btn => {
 
@@ -30,7 +31,7 @@ btn.addEventListener('click', e => {
 
     let tr = e.path.find(el => {
 
-    return (el.tagName.toUpperCase() === 'TR');
+        return (el.tagName.toUpperCase() === 'TR');
 
     });
 
@@ -38,24 +39,24 @@ btn.addEventListener('click', e => {
 
     for(let name in data){
 
-    switch(name){
+        switch(name){
 
-        case 'photo':
+            case 'photo':
 
-            formUpdate.querySelector('img').src = '/' + data[name];
-        
-        break;
+                formUpdate.querySelector('img').src = '/' + data[name];
+            
+            break;
 
-        default:
-        let input = formUpdate.querySelector(`[name=${name}]`);
-        
-        if(input){
+            default:
+            let input = formUpdate.querySelector(`[name=${name}]`);
+            
+            if(input){
 
-            input.value = data[name];
-        
-        } 
+                input.value = data[name];
+            
+            } 
 
-    }
+        }
 
     }
 
