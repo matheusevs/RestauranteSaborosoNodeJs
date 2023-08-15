@@ -27,7 +27,7 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
 
-            fields.photo = `images/${path.parse(files.photo.path).base}`;
+            fields.photo = `images/upload/${path.parse(files.photo.path).base}`;
 
             conn.query(`
             
