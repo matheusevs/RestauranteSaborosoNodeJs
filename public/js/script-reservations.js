@@ -78,9 +78,9 @@ formUpdate.save().then(json => {
 
         let data = JSON.parse(tr.dataset.row);
 
-        if(confirm(`Deseja realmente excluir o menu ${data.title}?`)){
+        if(confirm(`Deseja realmente excluir a reserva de ${data.name}?`)){
 
-            fetch(`/admin/menus/${data.id}`, {
+            fetch(`/admin/reservations/${data.id}`, {
                 method: 'DELETE'
             })
             .then(response => response.json())
