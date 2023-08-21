@@ -3,7 +3,9 @@ var users = require('./../inc/users');
 var admin = require('./../inc/admin');
 var menus = require('./../inc/menus');
 var reservations = require('./../inc/reservations');
+var moment = require('moment');
 var router = express.Router();
+moment.locale('pt-BR');
 
 router.use(function(req, res, next){
 
@@ -141,7 +143,10 @@ router.get('/reservations', function(req, res, next){
 
     reservations.getReservations().then(data => {
 
-        res.render('admin/reservations', admin.getParams(req, {data}));
+        res.render('admin/reservations', admin.getParams(req, {
+            data,
+            moment
+        }));
 
     }).catch(error => {
 
