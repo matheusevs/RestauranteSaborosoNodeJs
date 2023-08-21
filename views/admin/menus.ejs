@@ -144,4 +144,39 @@
 
 <script src="/js/filereader.js"></script>
 <script src="/js/formsave.js"></script>
-<script src="/js/script-menu.js"></script>
+<script src="/js/grid.js"></script>
+<script>
+
+new PluginFileReader('#modal-create [type=file]', '#modal-create img');
+new PluginFileReader('#modal-update [type=file]', '#modal-update img');
+
+  new Grid({
+    deleteUrl: '/admin/menus/${data.id}',
+    deleteMsg: 'Deseja realmente excluir o menu ${data.title}?',
+    onUpdateLoad: (form, name, data) => {
+
+      let input = form.querySelector(`[name=${name}]`);
+
+      switch(name){
+
+        case 'photo':
+
+          form.querySelector('img').src = '/' + data[name];
+        
+        break;
+
+        default:                    
+          if(input){
+
+            input.value = data[name];
+          
+          }
+        break;
+
+      }
+
+    }
+
+  });
+
+</script>

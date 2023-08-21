@@ -208,7 +208,33 @@
 
   new Grid({
     deleteUrl: '/admin/reservations/${data.id}',
-    deleteMsg: 'Deseja realmente excluir a reserva de ${data.name}?'
+    deleteMsg: 'Deseja realmente excluir a reserva de ${data.name}?',
+    onUpdateLoad: (form, name, data) => {
+
+      let input = form.querySelector(`[name=${name}]`);
+
+      switch(name){
+
+        case 'date':
+          if(input){
+
+            input.value = moment(data[name]).format('YYYY-MM-DD');
+          
+          }
+        break;
+
+        default:                    
+          if(input){
+
+            input.value = data[name];
+          
+          }
+        break;
+
+      }
+
+    }
+    
   });
 
 </script>

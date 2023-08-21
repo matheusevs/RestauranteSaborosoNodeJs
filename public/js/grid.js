@@ -116,26 +116,7 @@ class Grid{
 
                 for(let name in data){
 
-                    let input = this.formUpdate.querySelector(`[name=${name}]`);
-
-                    switch(name){
-
-                        case 'date':
-                            if(input){
-
-                                input.value = moment(data[name]).format('YYYY-MM-DD');
-                            
-                            }
-                        break;
-
-                        default:                    
-                            if(input){
-
-                                input.value = data[name];
-                            
-                            } 
-
-                    }
+                    this.options.onUpdateLoad(this.formUpdate, name, data);
 
                 }
                 
