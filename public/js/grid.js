@@ -8,9 +8,39 @@ class Grid{
           
                 $('#modal-update').modal('show');
         
-            }
+            },
 
-        }, configs.listeners)
+            afterDeleteClick: (e) => {
+          
+                window.location.reload();
+        
+            },
+
+            afterFormCreate: (e) => {
+
+                window.location.reload();
+
+            },
+
+            afterFormUpdate: (e) => {
+
+                window.location.reload();
+
+            },
+
+            afterFormCreateError: (e) => {
+
+                alert(e);
+
+            },
+
+            afterFormUpdateError: (e) => {
+
+                alert(e);
+
+            },
+
+        }, configs.listeners);
 
         this.options = Object.assign({}, {
             formCreate: '#modal-create form',
@@ -30,11 +60,11 @@ class Grid{
 
         this.formCreate.save().then(json => {
 
-            window.location.reload();
+            this.fireEvent('afterFormCreate');
 
         }).catch(error => {
 
-            console.error(error);
+            this.fireEvent('afterFormCreateError')
 
         });
 
@@ -42,11 +72,11 @@ class Grid{
 
         this.formUpdate.save().then(json => {
 
-            window.location.reload();
+            this.fireEvent('afterFormUpdate');
 
         }).catch(error => {
 
-            console.error(error);
+            this.fireEvent('afterFormUpdateError')
 
         });
 
@@ -62,19 +92,27 @@ class Grid{
 
     }
 
+    getTrData(e){
+
+        let tr = e.path.find(el => {
+
+            return (el.tagName.toUpperCase() === 'TR');
+
+        });
+
+        return JSON.parse(tr.dataset.row);
+
+    }
+
     initButtons(){
 
         [...document.querySelectorAll(this.options.btnUpdate)].forEach(btn => {
 
             btn.addEventListener('click', e => {
 
-                let tr = e.path.find(el => {
+                this.fireEvent('beforeDeleteClick', [e]);
 
-                    return (el.tagName.toUpperCase() === 'TR');
-
-                });
-
-                let data = JSON.parse(tr.dataset.row);
+                let data = this.getTrData(e);
 
                 for(let name in data){
 
@@ -112,13 +150,9 @@ class Grid{
 
             btn.addEventListener('click', e => {
 
-                let tr = e.path.find(el => {
+                this.fireEvent('beforeDeleteClick');
 
-                    return (el.tagName.toUpperCase() === 'TR');
-
-                });
-
-                let data = JSON.parse(tr.dataset.row);
+                let data = this.getTrData(e);
 
                 if(confirm(eval('`' + this.options.deleteMsg + '`'))){
 
@@ -128,7 +162,7 @@ class Grid{
                     .then(response => response.json())
                     .then(json => {
             
-                        window.location.reload();
+                        this.fireEvent('afterDeleteClick');
             
                     });
                 
