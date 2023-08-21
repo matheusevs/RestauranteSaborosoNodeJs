@@ -203,4 +203,12 @@
 
 <script src="/js/moment.min.js"></script>
 <script src="/js/formsave.js"></script>
-<script src="/js/script-reservations.js"></script>
+<script src="/js/grid.js"></script>
+<script>
+
+  new Grid({
+    deleteUrl: '/admin/reservations/${data.id}',
+    deleteMsg: 'Deseja realmente excluir a reserva de ${data.name}?'
+  });
+
+</script>
