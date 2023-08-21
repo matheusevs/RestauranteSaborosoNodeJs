@@ -139,7 +139,16 @@ router.delete('/menus/:id', function(req, res, next){
 
 router.get('/reservations', function(req, res, next){
 
-    res.render('admin/reservations', admin.getParams(req));
+    reservations.getReservations().then(data => {
+
+        res.render('admin/reservations', admin.getParams(req, {data}));
+
+    }).catch(error => {
+
+        console.error(error);
+
+    })
+
 
 });
 

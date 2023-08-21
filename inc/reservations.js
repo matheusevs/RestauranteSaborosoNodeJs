@@ -23,7 +23,7 @@ module.exports = {
 
                 let date = fields.date.split('/');
                 fields.date = `${date[2]}-${date[1]}-${date[0]}`;
-                
+
             }
 
             let query, params = [
@@ -72,6 +72,26 @@ module.exports = {
     
             });
         
+        });
+
+    },
+
+    getReservations(){
+
+        return new Promise((resolve, reject) => {
+
+            conn.query(`
+                SELECT * FROM tb_reservations ORDER BY date DESC
+            `, (err, results) => {
+
+                if(err){
+                    reject(err);
+                }
+                
+                resolve(results);
+
+            });
+            
         });
 
     }
