@@ -92,9 +92,6 @@ module.exports = {
 
     delete(id){
 
-        console.log(id);
-
-
         return new Promise((resolve, reject) => {
 
             conn.query(`
