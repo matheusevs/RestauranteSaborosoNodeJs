@@ -89,6 +89,6 @@ module.exports = {
 
         });
 
-    },
+    }
 
 }
