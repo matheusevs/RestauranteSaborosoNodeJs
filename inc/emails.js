@@ -10,7 +10,7 @@ module.exports = {
 
             if(!data.email){
 
-                reject('Preencha o e-mail.');
+                reject({error: 'Preencha o e-mail.'});
             
               } else {
             
