@@ -92,7 +92,7 @@ module.exports = {
                 query = `
                     UPDATE tb_users
                     SET name = ?,
-                        email = ?,
+                        email = ?
                     WHERE id = ?
                 `;
 
