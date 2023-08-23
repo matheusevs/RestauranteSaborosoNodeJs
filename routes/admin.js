@@ -213,6 +213,20 @@ router.post('/users', function(req, res, next){
 
 });
 
+router.post('/users/password-change', function(req, res, next){
+
+    users.changePassword(req).then(results => {
+
+        res.send(results);
+
+    }).catch(error => {
+
+        res.send({error});
+
+    });
+
+});
+
 router.delete('/users/:id', function(req, res, next){
 
     users.delete(req.params.id).then(results => {
