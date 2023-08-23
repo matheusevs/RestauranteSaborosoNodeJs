@@ -42,6 +42,53 @@ module.exports = {
 
         });
 
-    }
+    },
+
+    getContacts(){
+
+        return new Promise((resolve, reject) => {
+
+            conn.query(`
+                SELECT * FROM tb_contacts ORDER BY register DESC
+            `, (err, results) => {
+
+                if(err){
+                    reject(err);
+                }
+                
+                resolve(results);
+
+            });
+            
+        });
+
+    },
+
+    delete(id){
+
+        return new Promise((resolve, reject) => {
+
+            conn.query(`
+
+                DELETE FROM tb_contacts WHERE id = ?
+
+            `, [id], (error, results) => {
+
+
+                if(error){
+
+                    reject(error);
+
+                } else {
+
+                    resolve(results);
+
+                }
+
+            });
+
+        });
+
+    },
 
 }

@@ -66,29 +66,37 @@ class Grid{
 
         this.formCreate = document.querySelector(this.options.formCreate);
 
-        this.formCreate.save({
+        if(this.formCreate){
 
-            success: () => {
-                this.fireEvent('afterFormCreate');
-            }, 
-            failure: () => {
-                this.fireEvent('afterFormCreateError');
-            }
-
-        });
+            this.formCreate.save({
+    
+                success: () => {
+                    this.fireEvent('afterFormCreate');
+                }, 
+                failure: () => {
+                    this.fireEvent('afterFormCreateError');
+                }
+    
+            });
+        
+        }
 
         this.formUpdate = document.querySelector(this.options.formUpdate);
 
-        this.formUpdate.save({
+        if(this.formUpdate){
 
-            success: () => {
-                this.fireEvent('afterFormUpdate');
-            }, 
-            failure: () => {
-                this.fireEvent('afterFormUpdateError')
-            }
-
-        });
+            this.formUpdate.save({
+    
+                success: () => {
+                    this.fireEvent('afterFormUpdate');
+                }, 
+                failure: () => {
+                    this.fireEvent('afterFormUpdateError')
+                }
+    
+            });
+        
+        }
 
     }
 
