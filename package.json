@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon app.js"
   },
   "dependencies": {
     "connect-redis": "^3.3.3",
@@ -16,6 +16,7 @@
     "http-errors": "~1.6.3",
     "moment": "^2.29.4",
     "morgan": "~1.9.1",
-    "mysql2": "^3.6.0"
+    "mysql2": "^3.6.0",
+    "socket.io": "^4.7.2"
   }
 }

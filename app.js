@@ -6,12 +6,23 @@ var logger = require('morgan');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var formidable = require('formidable');
+var http = require('http');
+var socket = require('socket.io');
 var path = require('path');
 
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
 
 var app = express();
+
+var http = http.Server(app);
+var io = socket(http);
+
+io.on('connection', function(socket){
+
+  console.log('Nova conexão criada');
+
+});
 
 app.use(function(req, res, next){
 
@@ -79,4 +90,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+http.listen(3000, function(){
+
+  console.log('Servidor em execução');
+
+})

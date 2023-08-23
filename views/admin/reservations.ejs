@@ -243,7 +243,7 @@
     
   });
 
-  let grafico = new Chart(
+  let graphic = new Chart(
     document.querySelector('#chart').getContext('2d'), 
     {
       type: 'line',
@@ -277,7 +277,7 @@
     .then(response => response.json())
     .then(json => {
 
-      grafico.data = {
+      graphic.data = {
         labels: json.months,
         datasets: [{
           data: json.values,
@@ -289,7 +289,7 @@
         }]
       }
 
-      grafico.update();
+      graphic.update();
 
     });
 
