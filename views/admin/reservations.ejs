@@ -32,7 +32,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="date" name="start" class="form-control unstyled" value="">
+                    <input type="date" name="start" class="form-control unstyled" value="<%= date.start %>">
                   </div>
                 </div>
                 <div class="form-group" style="width: 182px; float: left">
@@ -40,7 +40,7 @@
                     <div class="input-group-addon">
                       até
                     </div>
-                    <input type="date" name="end" class="form-control unstyled" value="">
+                    <input type="date" name="end" class="form-control unstyled" value="<%= date.end %>">
                   </div>
                 </div>
                 <div class="form-group" style="float: left; margin-left: 7px;">
@@ -83,11 +83,9 @@
           <!-- /.box-body -->
           <div class="box-footer clearfix">
             <ul class="pagination pagination-sm no-margin pull-right">
-              <li class="active"><a href="#">«</a></li>
-              <li><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">»</a></li>
+              <% links.forEach(link => { %>
+              <li <% if(link.active){ %> class="active"<% } %> ><a href="<%= link.href %>"><%= link.text %></a></li>
+              <% }); %>
             </ul>
           </div>
           <!-- /.box-footer -->

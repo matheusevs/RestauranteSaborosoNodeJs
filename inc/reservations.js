@@ -77,24 +77,53 @@ module.exports = {
 
     },
 
-    getReservations(page){
+    getReservations(query){
 
-        if(!page){
-            page = 1;
-        }
+        return new Promise((resolve, reject) => {
 
-        let pag = new Pagination(
-            `SELECT SQL_CALC_FOUND_ROWS * FROM tb_reservations ORDER BY name LIMIT ?, ?`
-        );
+            let page = query.page;
+            let dtStart = query.start;
+            let dtEnd = query.end;
+            
+            if(!page){
+                page = 1;
+            }
+    
+            let params = [];
+    
+            if(dtStart && dtEnd){
+                params.push(dtStart, dtEnd);
+            }
+                
+            let pag = new Pagination(
+                `
+                    SELECT SQL_CALC_FOUND_ROWS * 
+                    FROM tb_reservations 
+                    ${(dtStart && dtEnd) ? 'WHERE date BETWEEN ? AND ?' : ''}
+                    ORDER BY id LIMIT ?, ?
+                `, params
+            );
+    
+            pag.getPage(page).then(data => {
 
-        return pag.getPage(page);
+                resolve({
+
+                    data,
+                    links: pag.getNavigation(query)
+
+                });
+
+            }).catch(error => {
+
+                reject(error);
+
+            });
+
+        });
 
     },
 
     delete(id){
-
-        console.log(id);
-
 
         return new Promise((resolve, reject) => {
 
