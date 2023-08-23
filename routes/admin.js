@@ -213,6 +213,23 @@ router.get('/reservations', function(req, res, next){
 
 });
 
+router.get('/reservations/chart', function(req, res, next){
+
+    req.query.start = (req.query.start) ? req.query.start : moment().subtract(6, 'year').format('YYYY-MM-DD');
+    req.query.end = (req.query.end) ? req.query.end : moment().format('YYYY-MM-DD');
+
+    reservations.chart(req.query).then(chartData => {
+
+        res.send(chartData);
+
+    }).catch(error => {
+
+        console.error(error);
+
+    });
+
+});
+
 router.post('/reservations', function(req, res, next){
 
     reservations.save(req.fields, req.files).then(results => {
