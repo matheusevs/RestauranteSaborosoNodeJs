@@ -28,7 +28,6 @@ class Pagination {
         return new Promise((resolve, reject) => {
 
             conn.query([this.query, 'SELECT FOUND_ROWS() AS FOUND_ROWS;'].join(';'), this.params, (err, results) => {
-                console.log(this.params);
                 if(err){
 
                     reject(err);
@@ -78,7 +77,7 @@ class Pagination {
             nrStart = 1;
             nrEnd = limitPagesNav;
 
-        } else if((this.getCurrentPage() + parseInt(limitPagesNav / 1)) > this.getTotalPages()){ //Se estamos chegando nas últimas páginas
+        } else if((this.getCurrentPage() + parseInt(limitPagesNav / 2)) > this.getTotalPages()){ //Se estamos chegando nas últimas páginas
 
             nrStart = this.getTotalPages() - limitPagesNav;
             nrEnd = this.getTotalPages();
@@ -101,11 +100,15 @@ class Pagination {
 
         for(let x = nrStart; x <= nrEnd; x++){
 
-            links.push({
-                text: x,
-                href: '?' + this.getQueryString(Object.assign({}, params, {page: x})),
-                active: (x === this.getCurrentPage())
-            });
+            if(x != 0){
+                
+                links.push({
+                    text: x,
+                    href: '?' + this.getQueryString(Object.assign({}, params, {page: x})),
+                    active: (x === this.getCurrentPage())
+                });
+
+            }
 
         }
 
