@@ -5,9 +5,12 @@ https://redis.io/docs/getting-started/installation/install-redis-on-linux/
 
 <!-- sudo npm install express-generator -g
 sudo npm install -g bower
+sudo npm install -g nodemon
 cd public/admin/
 bower install
-npm install -g nodemon
+cd ../..
+npm install
+
 redis-server --port 6378
 set DEBUG=saboroso:* & npm start
 
