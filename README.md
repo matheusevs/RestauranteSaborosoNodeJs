@@ -10,9 +10,8 @@ cd public/admin/
 bower install
 cd ../..
 npm install
-
 redis-server --port 6378
-set DEBUG=saboroso:* & npm start
+npm start
 
 para criação do banco de dados, basta utilizar a migration que está no caminho public/db/mysql.sql
 
