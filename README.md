@@ -24,8 +24,13 @@ cd public/admin/
 bower install
 cd ../..
 npm install
-redis-server --port 6378
 npm start
+```
+
+**Após isso, abra um novo terminal na pasta raiz e continue rodando os comandos:**
+
+```bash
+redis-server --port 6378
 ```
 
 **Para criação do banco de dados, basta utilizar a migration que está no caminho public/db/mysql.sql**
