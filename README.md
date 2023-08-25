@@ -1,15 +1,3 @@
-
-
-para criação do banco de dados, basta utilizar a migration que está no caminho public/db/mysql.sql
-
-
--- necessario ter 
-nodejs
-mysql 
-redis
--->
-
-
 # - Projeto Restaurante Saboroso
 
 ---
@@ -22,6 +10,7 @@ Segue as orientações gerais para desenvolvedores que desejarem rodar o projeto
 
 - <a href="https://nodejs.org/en/">NodeJS - v14.20.1</a>
 - <a href="https://redis.io/docs/getting-started/installation/install-redis-on-linux/">Redis</a>
+- <a href="https://dev.mysql.com/downloads/installer/">MYSQL</a>
 
 **Após a instalação de todos as ferramentas acima, rode os seguintes comandos em seu terminal:**
 
