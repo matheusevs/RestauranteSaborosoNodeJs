@@ -112,7 +112,9 @@ class Grid{
 
     getTrData(e){
 
-        let tr = e.path.find(el => {
+        let path = e.path || (e.composedPath && e.composedPath()) || composedPath(e.target);
+
+        let tr = path.find(el => {
 
             return (el.tagName.toUpperCase() === 'TR');
 
@@ -188,6 +190,26 @@ class Grid{
 
         });
 
+    }
+
+    composedPath (el) {
+
+        let path = [];
+    
+        while (el) {
+    
+            path.push(el);
+    
+            if (el.tagName === 'HTML') {
+    
+                path.push(document);
+                path.push(window);
+    
+                return path;
+           }
+    
+           el = el.parentElement;
+        }
     }
 
 }
