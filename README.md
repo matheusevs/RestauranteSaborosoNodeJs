@@ -6,7 +6,7 @@
 
 Segue as orientações gerais para desenvolvedores que desejarem rodar o projeto em sua máquina.
 
-** Para rodar o projeto em seu computador, é necessario ter instalado: 
+**Para rodar o projeto em seu computador, é necessario ter instalado:**
 
 - <a href="https://nodejs.org/en/">NodeJS - v14.20.1</a>
 - <a href="https://redis.io/docs/getting-started/installation/install-redis-on-linux/">Redis</a>
@@ -28,7 +28,7 @@ redis-server --port 6378
 npm start
 ```
 
-**Para criação do banco de dados, basta utilizar a migration que está no caminho public/db/mysql.sql
+**Para criação do banco de dados, basta utilizar a migration que está no caminho public/db/mysql.sql**
 
 **Após rodar todos os comandos, acesse a url http://localhost:3000/ para ter acesso a aplicação e http://localhost:3000/admin para ter acesso a página de administração**
 
