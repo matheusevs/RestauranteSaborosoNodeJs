@@ -22,6 +22,9 @@ git clone https://github.com/matheusevs/RestauranteSaboroso.git
 cd RestauranteSaboroso
 cd public/admin/
 bower install
+cd ..
+cd images
+mkdir uploads
 cd ../..
 npm install
 npm start
@@ -30,7 +33,7 @@ npm start
 **Após isso, abra um novo terminal na pasta raiz e continue rodando os comandos:**
 
 ```bash
-redis-server --port 6378
+redis-server --port 6379
 ```
 
 **Para criação do banco de dados, basta utilizar a migration que está no caminho public/db/mysql.sql**
