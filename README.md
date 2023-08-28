@@ -42,4 +42,4 @@ redis-server --port 6379
 
 ---
 
-<!--<img src="img/gif.gif">-->
+<img src="media/gif.gif">
