@@ -42,4 +42,10 @@ redis-server --port 6379
 
 ---
 
-<img src="media/gif.gif">
+<!-- <img src="media/gif.gif"> -->
+<div style="text-align: center; padding-top: 50px;">
+    <video width="640" height="360" controls>
+        <source src="media/restauratesaboroso.mp4" type="video/mp4">
+        Seu navegador não suporta o elemento de vídeo.
+    </video>
+</div>
