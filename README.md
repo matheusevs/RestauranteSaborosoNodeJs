@@ -1,6 +1,4 @@
-# - Projeto Restaurante Saboroso
-
----
+# Projeto Restaurante Saboroso
 
 # Orientações
 
